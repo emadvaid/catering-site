@@ -1,0 +1,11 @@
+[
+  {
+    "id": "inv1",
+    "customer": "Acme Corp",
+    "items": [
+      { "name": "Chicken Biryani", "qty": 10, "unitPrice": 13.5 }
+    ],
+    "total": 135.0,
+    "status": "sent"
+  }
+]

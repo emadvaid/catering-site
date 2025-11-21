@@ -1,0 +1,14 @@
+[
+  {
+    "id": "m1",
+    "name": "Chicken Biryani",
+    "desc": "Aromatic rice layered with spiced chicken.",
+    "price": "13.50"
+  },
+  {
+    "id": "m2",
+    "name": "Beef Karahi",
+    "desc": "Wok-style beef with tomatoes and spices.",
+    "price": "14.00"
+  }
+]
