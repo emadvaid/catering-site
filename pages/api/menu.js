@@ -1,60 +1,17 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '../../lib/prisma';
 
 export default async function handler(req, res) {
-  const role = req.headers['x-role'] || '';
-
   if (req.method === 'GET') {
     try {
-      const menu = await prisma.menuItem.findMany();
-      return res.status(200).json(menu);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: 'Internal Server Error' });
-    }
-  }
-
-  if (!['owner', 'root'].includes(role)) {
-    return res.status(403).json({ error: 'forbidden' });
-  }
-
-  if (req.method === 'POST') {
-    try {
-      const item = req.body;
-      const newItem = await prisma.menuItem.create({ data: item });
-      return res.status(201).json(newItem);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: 'Internal Server Error' });
-    }
-  }
-
-  if (req.method === 'PUT') {
-    try {
-      const item = req.body;
-      const updatedItem = await prisma.menuItem.update({
-        where: { id: item.id },
-        data: item,
+      const menuItems = await prisma.menuItem.findMany({
+        orderBy: { name: 'asc' }
       });
-      return res.status(200).json(updatedItem);
+      res.status(200).json(menuItems);
     } catch (error) {
-      console.error(error);
-      return res.status(404).json({ error: 'not found' });
+      console.error('Menu API error:', error);
+      res.status(500).json({ error: 'Failed to fetch menu items' });
     }
+  } else {
+    res.status(405).json({ error: 'Method not allowed' });
   }
-
-  if (req.method === 'DELETE') {
-    try {
-      const { id } = req.query;
-      await prisma.menuItem.delete({ where: { id } });
-      return res.status(200).json({ ok: true });
-    } catch (error) {
-      console.error(error);
-      return res.status(404).json({ error: 'not found' });
-    }
-  }
-
-  res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE']);
-  res.status(405).end('Method Not Allowed');
 }

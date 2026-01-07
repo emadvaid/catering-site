@@ -21,13 +21,13 @@ function AppContent({ Component, pageProps }) {
         window.scrollTo(0, 1);
         window.scrollTo(0, 0);
       }, 100);
-    }
 
-    // Initialize push notifications when user logs in
-    if (session?.user) {
-      initPushNotifications().catch(err => {
-        console.log('Push notifications not available:', err);
-      });
+      // Initialize push notifications when user logs in (only in browser)
+      if (session?.user) {
+        initPushNotifications().catch(err => {
+          console.log('Push notifications not available:', err);
+        });
+      }
     }
   }, [session]);
 

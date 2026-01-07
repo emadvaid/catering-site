@@ -1,44 +1,25 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '../../lib/prisma';
 
 export default async function handler(req, res) {
-  const role = req.headers['x-role'] || '';
-
   if (req.method === 'GET') {
     try {
       const invoices = await prisma.invoice.findMany({
-        include: { items: true },
-      });
-      return res.status(200).json(invoices);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: 'Internal Server Error' });
-    }
-  }
-
-  if (!['owner', 'root'].includes(role)) {
-    return res.status(403).json({ error: 'forbidden' });
-  }
-
-  if (req.method === 'POST') {
-    try {
-      const invoice = req.body;
-      const newInvoice = await prisma.invoice.create({
-        data: {
-          ...invoice,
+        include: {
+          customer: true,
           items: {
-            create: invoice.items,
-          },
+            include: {
+              menuItem: true
+            }
+          }
         },
+        orderBy: { createdAt: 'desc' }
       });
-      return res.status(201).json(newInvoice);
+      res.status(200).json(invoices);
     } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: 'Internal Server Error' });
+      console.error('Invoices API error:', error);
+      res.status(500).json({ error: 'Failed to fetch invoices' });
     }
+  } else {
+    res.status(405).json({ error: 'Method not allowed' });
   }
-
-  res.setHeader('Allow', ['GET', 'POST']);
-  res.status(405).end('Method Not Allowed');
 }

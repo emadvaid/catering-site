@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Kabab Hut Catering - Authentic Pakistani & Indian Cuisine</title>
+        <title>Kabab Hut Catering - International Cuisine for Every Event</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes" />
       </Head>
 
@@ -43,15 +43,15 @@ export default function Home() {
 
       <main>
         {/* Hero Section with Search */}
-        <section className="relative bg-gradient-to-br from-orange-600 via-red-600 to-red-700 py-24 md:py-32">
+        <section className="relative bg-gradient-to-br from-gray-900 via-red-800 to-black py-24 md:py-32">
           <div className="absolute inset-0 bg-black opacity-10"></div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center text-white">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Desi Catering for Every Occasion
+                World-Class Catering for Every Occasion
               </h1>
               <p className="text-xl md:text-2xl mb-10 opacity-95">
-                Authentic Pakistani & Indian flavors - Biryani, Karahi, Nihari & More
+                International Cuisine from Around the Globe - Middle Eastern, Turkish, American & More
               </p>
               
               {/* Search Bar */}
@@ -89,7 +89,7 @@ export default function Home() {
                     className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition shadow-lg flex items-center justify-center gap-2"
                   >
                     <FaSearch />
-                    <span>Find Food</span>
+                    <span>Search Catering</span>
                   </button>
                 </div>
               </form>
@@ -101,7 +101,7 @@ export default function Home() {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">How It Works</h2>
-            <p className="text-center text-gray-600 mb-12 text-lg">Simple steps to delicious catering</p>
+            <p className="text-center text-gray-600 mb-12 text-lg">Simple steps to exceptional catering</p>
             
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
               <div className="text-center">
@@ -109,23 +109,23 @@ export default function Home() {
                   <span className="text-3xl font-bold text-red-600">1</span>
                 </div>
                 <h3 className="font-bold text-xl mb-3">Browse Menus</h3>
-                <p className="text-gray-600">Traditional desi dishes - biryani, karahi, nihari & more</p>
+                <p className="text-gray-600">Explore diverse cuisines from around the world</p>
               </div>
               
               <div className="text-center">
                 <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-3xl font-bold text-red-600">2</span>
                 </div>
-                <h3 className="font-bold text-xl mb-3">Add to Cart</h3>
-                <p className="text-gray-600">Select your favorites and customize portions</p>
+                <h3 className="font-bold text-xl mb-3">Customize Order</h3>
+                <p className="text-gray-600">Select dishes and adjust portions for your event</p>
               </div>
               
               <div className="text-center">
                 <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-3xl font-bold text-red-600">3</span>
                 </div>
-                <h3 className="font-bold text-xl mb-3">Place Order</h3>
-                <p className="text-gray-600">Confirm your delivery details and checkout</p>
+                <h3 className="font-bold text-xl mb-3">Confirm Details</h3>
+                <p className="text-gray-600">Review delivery details and complete checkout</p>
               </div>
               
               <div className="text-center">
@@ -133,34 +133,87 @@ export default function Home() {
                   <span className="text-3xl font-bold text-red-600">4</span>
                 </div>
                 <h3 className="font-bold text-xl mb-3">Enjoy!</h3>
-                <p className="text-gray-600">Fresh food delivered right to your event</p>
+                <p className="text-gray-600">Professional service and delicious food at your event</p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Popular Dishes */}
+        {/* Cuisine Categories */}
+        <section className="py-12 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              {/* Scrollable categories */}
+              <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+                {[
+                  { name: 'Asian', icon: '🥢', link: '/menu?category=Asian' },
+                  { name: 'BBQ', icon: '🍗', link: '/menu?category=BBQ' },
+                  { name: 'Breakfast', icon: '🥞', link: '/menu?category=Breakfast' },
+                  { name: 'Healthy', icon: '🥗', link: '/menu?category=Healthy' },
+                  { name: 'Italian', icon: '🍝', link: '/menu?category=Italian' },
+                  { name: 'Mediterranean', icon: '🥙', link: '/menu?category=Mediterranean' },
+                  { name: 'Mexican', icon: '🌮', link: '/menu?category=Mexican' },
+                  { name: 'Pizza', icon: '🍕', link: '/menu?category=Pizza' },
+                  { name: 'Sandwiches', icon: '🥪', link: '/menu?category=Sandwiches' },
+                  { name: 'Desserts', icon: '🍰', link: '/menu?category=Desserts' },
+                  { name: 'More', icon: '•••', link: '/menu' },
+                ].map((category, idx) => (
+                  <Link 
+                    key={idx} 
+                    href={category.link}
+                    className="flex flex-col items-center justify-center min-w-[80px] group cursor-pointer"
+                  >
+                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-2 group-hover:bg-gray-200 transition">
+                      <span className="text-2xl">{category.icon}</span>
+                    </div>
+                    <span className="text-sm text-gray-700 font-medium text-center">{category.name}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Popular Dishes Grid */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Popular Dishes</h2>
-            <p className="text-center text-gray-600 mb-12 text-lg">Our customers' favorites</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Popular on Kabab Hut Catering</h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">Customer favorites from around the world</p>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
               {[
-                { name: 'Chicken Biryani', desc: 'Hyderabadi style with raita', icon: '🍚' },
-                { name: 'Seekh Kebabs', desc: 'Chapli & seekh kabab platter', icon: '�串' },
-                { name: 'Mutton Karahi', desc: 'Peshawari style karahi', icon: '🍛' },
-                { name: 'Beef Nihari', desc: 'Slow-cooked with naan', icon: '🥘' },
-                { name: 'Chicken Tikka', desc: 'Tandoori BBQ style', icon: '🍗' },
-                { name: 'Haleem', desc: 'Traditional wheat & meat stew', icon: '🍲' },
-                { name: 'Samosas & Pakoras', desc: 'Crispy fried appetizers', icon: '🥟' },
-                { name: 'Gulab Jamun', desc: 'Sweet dessert with kheer', icon: '🍮' },
+                { name: 'Mezze Platter', rating: 4.8, distance: '2.1 mi', price: '580', cuisine: 'Mediterranean', image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=300&fit=crop' },
+                { name: 'Korean BBQ Platter', rating: 4.9, distance: '1.5 mi', price: '850', cuisine: 'Asian', image: 'https://images.unsplash.com/photo-1568096889942-6eedde686635?w=400&h=300&fit=crop' },
+                { name: 'Smoked BBQ Ribs', rating: 4.7, distance: '3.2 mi', price: '950', cuisine: 'American', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop' },
+                { name: 'Fettuccine Alfredo', rating: 4.6, distance: '2.8 mi', price: '520', cuisine: 'Italian', image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop' },
+                { name: 'Taco Bar Box', rating: 4.8, distance: '1.9 mi', price: '620', cuisine: 'Mexican', image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=300&fit=crop' },
+                { name: 'Pad Thai Noodles', rating: 4.9, distance: '2.3 mi', price: '450', cuisine: 'Asian', image: 'https://images.unsplash.com/photo-1559314809-0d155014e29e?w=400&h=300&fit=crop' },
+                { name: 'Gourmet Pizza', rating: 4.7, distance: '1.2 mi', price: '950', cuisine: 'Italian', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop' },
+                { name: 'Shawarma Platter', rating: 4.8, distance: '2.5 mi', price: '680', cuisine: 'Mediterranean', image: 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=400&h=300&fit=crop' },
               ].map((item, idx) => (
-                <div key={idx} className="bg-white rounded-lg shadow-md hover:shadow-xl transition p-6 text-center">
-                  <div className="text-5xl mb-4">{item.icon}</div>
-                  <h3 className="font-bold text-lg mb-2">{item.name}</h3>
-                  <p className="text-gray-600 text-sm">{item.desc}</p>
-                </div>
+                <Link key={idx} href="/menu" className="bg-white rounded-lg shadow-md hover:shadow-xl transition overflow-hidden group">
+                  <div className="relative h-40 overflow-hidden">
+                    <img 
+                      src={item.image} 
+                      alt={item.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-bold text-base mb-1 text-gray-800">{item.name}</h3>
+                    <div className="flex items-center gap-2 text-xs text-gray-600 mb-2">
+                      <span className="flex items-center gap-1">
+                        <span className="text-yellow-500">★</span>
+                        {item.rating}
+                      </span>
+                      <span>•</span>
+                      <span>{item.distance}</span>
+                      <span>•</span>
+                      <span className="font-semibold text-gray-800">${(item.price/100).toFixed(0)}</span>
+                    </div>
+                    <p className="text-xs text-gray-500">{item.cuisine}</p>
+                  </div>
+                </Link>
               ))}
             </div>
             
@@ -172,49 +225,49 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Why Choose Kabab Hut */}
+        {/* Why Choose Us */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Why Choose Kabab Hut?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Why Choose Kabab Hut Catering?</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <FaCheckCircle className="text-green-600 text-3xl" />
                 </div>
-                <h3 className="font-bold text-xl mb-3">Authentic Desi Taste</h3>
-                <p className="text-gray-600">Traditional recipes with spices imported from Pakistan & India. Taste just like home (ghar jaisa swaad)!</p>
+                <h3 className="font-bold text-xl mb-3">Global Cuisine Expertise</h3>
+                <p className="text-gray-600">Master chefs specializing in Middle Eastern, Turkish, Mediterranean, American, Asian and European cuisines</p>
               </div>
               
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <FaCheckCircle className="text-blue-600 text-3xl" />
                 </div>
-                <h3 className="font-bold text-xl mb-3">Halal Certified</h3>
-                <p className="text-gray-600">100% halal meat from trusted suppliers. Perfect for weddings, Eid, family gatherings & corporate events</p>
+                <h3 className="font-bold text-xl mb-3">Premium Quality</h3>
+                <p className="text-gray-600">Fresh ingredients, certified suppliers, and dietary accommodations including halal, kosher, vegan & gluten-free options</p>
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FaCheckCircle className="text-orange-600 text-3xl" />
+                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <FaCheckCircle className="text-purple-600 text-3xl" />
                 </div>
-                <h3 className="font-bold text-xl mb-3">Large Party Specialists</h3>
-                <p className="text-gray-600">Experience catering 50-500+ guests for weddings, mehndi, valima & community events with professional setup</p>
+                <h3 className="font-bold text-xl mb-3">Professional Service</h3>
+                <p className="text-gray-600">Experience catering events from 20 to 1000+ guests - weddings, corporate events, conferences & private parties</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Testimonials */}
-        <section className="py-16 bg-gradient-to-br from-red-50 to-orange-50">
+        <section className="py-16 bg-gradient-to-br from-amber-50 to-rose-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">What Our Customers Say</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">What Our Clients Say</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[
-                { name: 'Fatima S.', role: 'Eid Celebration', text: 'MashAllah! The nihari was outstanding and the biryani reminded me of my mother\'s cooking. Everyone asked for the caterer\'s number!', rating: 5 },
-                { name: 'Ahmed K.', role: 'Walima Reception', text: 'Perfect for our wedding! Authentic desi taste, halal meat, and they handled 300 guests professionally. Highly recommend for shaadis!', rating: 5 },
-                { name: 'Zainab M.', role: 'Family Dawat', text: 'Ordered for my son\'s birthday. The karahi and seekh kebabs were exactly like back home in Lahore. Will order again for sure!', rating: 5 },
+                { name: 'Sarah M.', role: 'Corporate Event', text: 'Outstanding service for our company conference! The Mediterranean spread was exceptional and accommodated all dietary restrictions perfectly.', rating: 5 },
+                { name: 'Michael T.', role: 'Wedding Reception', text: 'Kabab Hut Catering made our wedding unforgettable! The fusion menu featuring Turkish and Italian dishes impressed all 250 guests. Highly professional!', rating: 5 },
+                { name: 'Jennifer L.', role: 'Private Party', text: 'Hired them for our anniversary celebration. The quality and presentation of the international buffet exceeded expectations. Will definitely use again!', rating: 5 },
               ].map((review, idx) => (
                 <div key={idx} className="bg-white rounded-lg shadow-md p-6">
                   <div className="flex mb-3">
@@ -234,15 +287,15 @@ export default function Home() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-r from-red-600 to-orange-600 text-white">
+        <section className="py-16 bg-gradient-to-r from-gray-900 to-red-800 text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Order?</h2>
-            <p className="text-xl mb-8 opacity-95">Book your next dawat with authentic desi flavors - Shaadi, Eid, or any celebration!</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Elevate Your Event?</h2>
+            <p className="text-xl mb-8 opacity-95">Experience world-class catering for weddings, corporate events, and special celebrations</p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Link href="/menu" className="bg-white text-red-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition shadow-lg">
+              <Link href="/menu" className="bg-amber-400 text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-amber-300 transition shadow-lg">
                 Browse Menu
               </Link>
-              <Link href="/contact" className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-red-600 transition">
+              <Link href="/contact" className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-red-700 transition">
                 Contact Us
               </Link>
             </div>

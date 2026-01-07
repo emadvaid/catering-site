@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { FaHeart, FaRegHeart, FaTimes } from 'react-icons/fa';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useCart } from '../context/CartContext';
@@ -7,7 +9,10 @@ import { useCart } from '../context/CartContext';
 export default function Menu() {
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const { addToCart, cart } = useCart();
+  const { data: session } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchMenu() {
@@ -24,6 +29,19 @@ export default function Menu() {
   };
 
   const handleAddToCart = (item) => {
+    if (!session) {
+      setShowLoginModal(true);
+      return;
+    }
+    addToCart(item);
+  };
+
+  const handleHeartClick = (e, item) => {
+    e.stopPropagation();
+    if (!session) {
+      setShowLoginModal(true);
+      return;
+    }
     addToCart(item);
   };
 
@@ -51,7 +69,7 @@ export default function Menu() {
                   
                   {/* Heart Icon */}
                   <button
-                    onClick={() => handleAddToCart(item)}
+                    onClick={(e) => handleHeartClick(e, item)}
                     className="absolute top-4 right-4 bg-white rounded-full p-3 shadow-lg hover:scale-110 transition transform"
                   >
                     {isInCart(item.id) ? (
@@ -79,6 +97,51 @@ export default function Menu() {
         )}
       </main>
       <Footer />
+
+      {/* Login Modal */}
+      {showLoginModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-2xl max-w-md w-full p-8 relative">
+            {/* Close Button */}
+            <button
+              onClick={() => setShowLoginModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+            >
+              <FaTimes size={24} />
+            </button>
+
+            {/* Modal Content */}
+            <div className="text-center">
+              <h2 className="text-3xl font-bold mb-4 text-gray-800">Sign In Required</h2>
+              <p className="text-gray-600 mb-8">
+                Please sign in or create an account to add items to your favorites and cart.
+              </p>
+
+              {/* Action Buttons */}
+              <div className="space-y-4">
+                <button
+                  onClick={() => router.push('/login')}
+                  className="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition"
+                >
+                  Sign In
+                </button>
+                <button
+                  onClick={() => router.push('/login')}
+                  className="w-full bg-white border-2 border-indigo-600 text-indigo-600 py-3 px-6 rounded-lg font-semibold hover:bg-indigo-50 transition"
+                >
+                  Create New Account
+                </button>
+                <button
+                  onClick={() => setShowLoginModal(false)}
+                  className="w-full text-gray-600 py-2 hover:text-gray-800 transition"
+                >
+                  Continue Browsing
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

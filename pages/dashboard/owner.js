@@ -77,15 +77,15 @@ export default function OwnerDashboard() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
               <div className="bg-blue-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-600">Total Revenue</p>
-                <p className="text-2xl font-bold text-blue-600">${analytics.totalRevenue.toFixed(2)}</p>
+                <p className="text-2xl font-bold text-blue-600">${(analytics.totalRevenue || 0).toFixed(2)}</p>
               </div>
               <div className="bg-green-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-600">Total Orders</p>
-                <p className="text-2xl font-bold text-green-600">{analytics.totalOrders}</p>
+                <p className="text-2xl font-bold text-green-600">{analytics.totalOrders || 0}</p>
               </div>
               <div className="bg-purple-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-600">Total Customers</p>
-                <p className="text-2xl font-bold text-purple-600">{analytics.totalCustomers}</p>
+                <p className="text-2xl font-bold text-purple-600">{analytics.totalCustomers || 0}</p>
               </div>
               <div className="bg-orange-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-600">Repeat Customers</p>
@@ -97,13 +97,13 @@ export default function OwnerDashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
               <div className="border rounded-lg p-4">
                 <h3 className="font-semibold mb-3">Current Month</h3>
-                <p className="text-gray-600">Revenue: <span className="font-bold text-green-600">${analytics.currentMonthRevenue.toFixed(2)}</span></p>
-                <p className="text-gray-600">Orders: <span className="font-bold">{analytics.currentMonthOrders}</span></p>
+                <p className="text-gray-600">Revenue: <span className="font-bold text-green-600">${(analytics.currentMonthRevenue || 0).toFixed(2)}</span></p>
+                <p className="text-gray-600">Orders: <span className="font-bold">{analytics.currentMonthOrders || 0}</span></p>
               </div>
               <div className="border rounded-lg p-4">
                 <h3 className="font-semibold mb-3">Last Month</h3>
-                <p className="text-gray-600">Revenue: <span className="font-bold text-blue-600">${analytics.lastMonthRevenue.toFixed(2)}</span></p>
-                <p className="text-gray-600">Orders: <span className="font-bold">{analytics.lastMonthOrders}</span></p>
+                <p className="text-gray-600">Revenue: <span className="font-bold text-blue-600">${(analytics.lastMonthRevenue || 0).toFixed(2)}</span></p>
+                <p className="text-gray-600">Orders: <span className="font-bold">{analytics.lastMonthOrders || 0}</span></p>
               </div>
             </div>
 
@@ -113,11 +113,11 @@ export default function OwnerDashboard() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-gray-600">New Customers</p>
-                  <p className="text-2xl font-bold text-blue-600">{analytics.newCustomers}</p>
+                  <p className="text-2xl font-bold text-blue-600">{analytics.newCustomers || 0}</p>
                 </div>
                 <div>
                   <p className="text-gray-600">Repeat Customers</p>
-                  <p className="text-2xl font-bold text-green-600">{analytics.repeatCustomers}</p>
+                  <p className="text-2xl font-bold text-green-600">{analytics.repeatCustomers || 0}</p>
                 </div>
               </div>
             </div>
@@ -144,23 +144,25 @@ export default function OwnerDashboard() {
             )}
 
             {/* Top Items Chart */}
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4">Top Menu Items by Revenue</h3>
-              <BarChart
-                width={800}
-                height={300}
-                data={analytics.topItems.slice(0, 10)}
-                margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-                className="mx-auto"
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="revenue" fill="#10B981" />
-              </BarChart>
-            </div>
+            {analytics.topItems && analytics.topItems.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold mb-4">Top Menu Items by Revenue</h3>
+                <BarChart
+                  width={800}
+                  height={300}
+                  data={analytics.topItems.slice(0, 10)}
+                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                  className="mx-auto"
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="revenue" fill="#10B981" />
+                </BarChart>
+              </div>
+            )}
 
             <button
               onClick={exportToCSV}

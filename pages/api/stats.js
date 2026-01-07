@@ -1,99 +1,67 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '../../lib/prisma';
 
 export default async function handler(req, res) {
-  const role = req.headers['x-role'] || '';
-  if (!['owner', 'root'].includes(role)) {
-    return res.status(403).json({ error: 'forbidden' });
+  const { role } = req.headers;
+
+  if (!role || !['owner', 'root'].includes(role)) {
+    return res.status(403).json({ error: 'Unauthorized' });
   }
 
   try {
-    const invoices = await prisma.invoice.findMany({
-      include: { items: true },
+    // Get overall statistics
+    const totalRevenue = await prisma.invoice.aggregate({
+      _sum: { total: true }
     });
 
-    const totalRevenue = invoices.reduce((sum, inv) => sum + (parseFloat(inv.total) || 0), 0);
-    const totalOrders = invoices.length;
-    
-    // Customer analytics
-    const customerMap = new Map();
-    invoices.forEach((inv) => {
-      const count = customerMap.get(inv.customer) || 0;
-      customerMap.set(inv.customer, count + 1);
-    });
-    const totalCustomers = customerMap.size;
-    const newCustomers = Array.from(customerMap.values()).filter(count => count === 1).length;
-    const repeatCustomers = totalCustomers - newCustomers;
+    const totalOrders = await prisma.invoice.count();
 
-    // Item analytics
-    const itemMap = {};
-    invoices.forEach((inv) => {
-      (inv.items || []).forEach((it) => {
-        const name = it.name || 'Unknown';
-        const qty = parseFloat(it.qty) || 0;
-        const revenue = (parseFloat(it.unitPrice) || 0) * qty;
-        if (!itemMap[name]) itemMap[name] = { name, qty: 0, revenue: 0 };
-        itemMap[name].qty += qty;
-        itemMap[name].revenue += revenue;
-      });
-    });
-    const topItems = Object.values(itemMap).sort((a, b) => b.qty - a.qty);
-
-    // Monthly analytics
-    const now = new Date();
-    const currentMonth = now.getMonth();
-    const currentYear = now.getFullYear();
-    const lastMonth = currentMonth === 0 ? 11 : currentMonth - 1;
-    const lastMonthYear = currentMonth === 0 ? currentYear - 1 : currentYear;
-
-    let currentMonthRevenue = 0;
-    let lastMonthRevenue = 0;
-    let currentMonthOrders = 0;
-    let lastMonthOrders = 0;
-
-    const monthlyData = {};
-
-    invoices.forEach((inv) => {
-      const date = inv.createdAt ? new Date(inv.createdAt) : new Date();
-      const month = date.getMonth();
-      const year = date.getFullYear();
-      const revenue = parseFloat(inv.total) || 0;
-
-      // Current and last month
-      if (year === currentYear && month === currentMonth) {
-        currentMonthRevenue += revenue;
-        currentMonthOrders++;
-      }
-      if (year === lastMonthYear && month === lastMonth) {
-        lastMonthRevenue += revenue;
-        lastMonthOrders++;
-      }
-
-      // Monthly breakdown
-      const key = `${year}-${String(month + 1).padStart(2, '0')}`;
-      if (!monthlyData[key]) monthlyData[key] = { month: key, revenue: 0, orders: 0 };
-      monthlyData[key].revenue += revenue;
-      monthlyData[key].orders++;
+    const totalCustomers = await prisma.user.count({
+      where: { role: 'customer' }
     });
 
-    const monthlyBreakdown = Object.values(monthlyData).sort((a, b) => a.month.localeCompare(b.month));
+    // Get top selling items
+    const topItems = await prisma.invoiceItem.groupBy({
+      by: ['menuItemId'],
+      _sum: {
+        quantity: true,
+        subtotal: true
+      },
+      orderBy: {
+        _sum: {
+          quantity: 'desc'
+        }
+      },
+      take: 10
+    });
+
+    // Fetch menu item details for top items
+    const topItemsWithDetails = await Promise.all(
+      topItems.map(async (item) => {
+        const menuItem = await prisma.menuItem.findUnique({
+          where: { id: item.menuItemId }
+        });
+        return {
+          name: menuItem?.name,
+          qty: item._sum.quantity,
+          revenue: item._sum.subtotal
+        };
+      })
+    );
 
     res.status(200).json({
-      totalRevenue,
+      totalRevenue: totalRevenue._sum.total || 0,
       totalOrders,
       totalCustomers,
-      newCustomers,
-      repeatCustomers,
-      currentMonthRevenue,
-      lastMonthRevenue,
-      currentMonthOrders,
-      lastMonthOrders,
-      topItems,
-      monthlyBreakdown,
+      topItems: topItemsWithDetails,
+      newCustomers: 0,
+      repeatCustomers: 0,
+      currentMonthRevenue: 0,
+      lastMonthRevenue: 0,
+      currentMonthOrders: 0,
+      lastMonthOrders: 0
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Stats API error:', error);
+    res.status(500).json({ error: 'Failed to fetch statistics' });
   }
 }
