@@ -10,8 +10,8 @@ export default function Header() {
   const cartCount = getCartCount();
 
   return (
-    <header className="bg-gradient-to-r from-gray-900 to-red-800 text-white shadow-lg">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+    <header className="bg-gradient-to-r from-gray-900 to-red-800 text-white shadow-lg" style={{ paddingTop: 'var(--safe-area-inset-top)' }}>
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between" style={{ paddingLeft: 'max(1rem, var(--safe-area-inset-left))', paddingRight: 'max(1rem, var(--safe-area-inset-right))' }}>
         <div className="flex items-center">
           <Link href="/" className="block">
             <Image src="/logo.png" alt="Kabab Hut Catering" height={40} width={160} priority />

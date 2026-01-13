@@ -36,7 +36,7 @@ export default function Home() {
     <>
       <Head>
         <title>Kabab Hut Catering - International Cuisine for Every Event</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes, viewport-fit=cover" />
       </Head>
 
       <Header />
