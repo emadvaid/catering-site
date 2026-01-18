@@ -10,6 +10,7 @@ export default function Menu() {
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const { addToCart, cart } = useCart();
   const { data: session } = useSession();
   const router = useRouter();
@@ -23,6 +24,12 @@ export default function Menu() {
     }
     fetchMenu();
   }, []);
+
+  const categories = ['all', ...new Set(menuItems.map(item => item.category))];
+  
+  const filteredItems = selectedCategory === 'all' 
+    ? menuItems 
+    : menuItems.filter(item => item.category === selectedCategory);
 
   const isInCart = (itemId) => {
     return cart.some((item) => item.id === itemId);
@@ -51,11 +58,30 @@ export default function Menu() {
       <main className="container mx-auto px-4 py-12 flex-grow">
         <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Our Menu</h1>
         
+        {/* Category Filter */}
+        {!loading && (
+          <div className="flex flex-wrap gap-3 justify-center mb-10">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-4 py-2 rounded-lg font-semibold transition capitalize ${
+                  selectedCategory === cat
+                    ? 'bg-red-600 text-white'
+                    : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                }`}
+              >
+                {cat.replace(/-/g, ' ')}
+              </button>
+            ))}
+          </div>
+        )}
+        
         {loading ? (
           <p className="text-center text-gray-600">Loading menu...</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {menuItems.map((item) => (
+            {filteredItems.map((item) => (
               <div key={item.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
                 {/* Image */}
                 <div className="relative h-56">
@@ -83,7 +109,12 @@ export default function Menu() {
                 {/* Content */}
                 <div className="p-6">
                   <h3 className="font-bold text-xl mb-2 text-gray-800">{item.name}</h3>
-                  <p className="text-3xl font-bold text-red-600 mb-4">${item.price.toFixed(2)}</p>
+                  <p className="text-gray-600 text-sm mb-4">{item.desc}</p>
+                  {item.price ? (
+                    <p className="text-3xl font-bold text-red-600 mb-4">${item.price.toFixed(2)}</p>
+                  ) : (
+                    <p className="text-lg text-gray-500 mb-4 italic">Contact for pricing</p>
+                  )}
                   <button
                     onClick={() => handleAddToCart(item)}
                     className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition"

@@ -3,12 +3,160 @@
     "id": "m1",
     "name": "Chicken Biryani",
     "desc": "Aromatic rice layered with spiced chicken.",
-    "price": "13.50"
+    "price": "",
+    "image": "/images/menu/Chicken Biryani.jpg",
+    "category": "biryani"
   },
   {
     "id": "m2",
-    "name": "Beef Karahi",
+    "name": "Beef Karhai",
     "desc": "Wok-style beef with tomatoes and spices.",
-    "price": "14.00"
+    "price": "",
+    "image": "/images/menu/Beef Karhai.jpg",
+    "category": "curries"
+  },
+  {
+    "id": "m3",
+    "name": "Beef Biryani",
+    "desc": "Fragrant rice with tender beef and aromatic spices.",
+    "price": "",
+    "image": "/images/menu/Beef Biryani.jpg",
+    "category": "biryani"
+  },
+  {
+    "id": "m4",
+    "name": "Chicken Karhai",
+    "desc": "Tender chicken cooked in a traditional wok with peppers and onions.",
+    "price": "",
+    "image": "/images/menu/Chicken Karhai.jpg",
+    "category": "curries"
+  },
+  {
+    "id": "m5",
+    "name": "Tandoori Chicken",
+    "desc": "Marinated chicken grilled in traditional clay oven.",
+    "price": "",
+    "image": "/images/menu/Tandoori Chicken.jpg",
+    "category": "grilled"
+  },
+  {
+    "id": "m6",
+    "name": "Chicken Seekh Kabab",
+    "desc": "Ground chicken mixed with spices and grilled on skewer.",
+    "price": "",
+    "image": "/images/menu/Chicken Seekh Kabab.jpg",
+    "category": "grilled"
+  },
+  {
+    "id": "m7",
+    "name": "Beef Seekh Kabab",
+    "desc": "Spiced ground beef kabab grilled to perfection.",
+    "price": "",
+    "image": "/images/menu/Beef Seekh Kabab.jpg",
+    "category": "grilled"
+  },
+  {
+    "id": "m8",
+    "name": "Chicken Tikka",
+    "desc": "Marinated chicken pieces cooked in tandoor.",
+    "price": "",
+    "image": "/images/menu/Chicken Tikka.jpg",
+    "category": "grilled"
+  },
+  {
+    "id": "m9",
+    "name": "Paneer Tikka",
+    "desc": "Indian cheese cubes marinated and grilled.",
+    "price": "",
+    "image": "/images/menu/Paneer Tikka.jpg",
+    "category": "vegetarian"
+  },
+  {
+    "id": "m10",
+    "name": "Beef Nihari",
+    "desc": "Slow-cooked beef in rich, aromatic gravy.",
+    "price": "",
+    "image": "/images/menu/Beef Nihari.jpg",
+    "category": "curries"
+  },
+  {
+    "id": "m11",
+    "name": "Mutton Karhai",
+    "desc": "Tender mutton cooked in traditional wok style.",
+    "price": "",
+    "image": "/images/menu/Mutton Karhai.jpg",
+    "category": "curries"
+  },
+  {
+    "id": "m12",
+    "name": "Chicken Biryani",
+    "desc": "Fragrant basmati rice with tender chicken.",
+    "price": "",
+    "image": "/images/menu/Chicken Achari.jpg",
+    "category": "curries"
+  },
+  {
+    "id": "m13",
+    "name": "Samosa",
+    "desc": "Crispy pastry filled with spiced potatoes and peas.",
+    "price": "",
+    "image": "/images/menu/Samosa.jpg",
+    "category": "appetizers"
+  },
+  {
+    "id": "m14",
+    "name": "Spring Rolls",
+    "desc": "Crispy spring rolls with vegetable filling.",
+    "price": "",
+    "image": "/images/menu/Spring Rolls.jpg",
+    "category": "appetizers"
+  },
+  {
+    "id": "m15",
+    "name": "Pani Puri Shots",
+    "desc": "Traditional street food snack in convenient shots.",
+    "price": "",
+    "image": "/images/menu/Pani Puri Shots.jpg",
+    "category": "appetizers"
+  },
+  {
+    "id": "m16",
+    "name": "Chicken 65",
+    "desc": "Spicy fried chicken pieces with curry leaves.",
+    "price": "",
+    "image": "/images/menu/Chicken 65.jpg",
+    "category": "appetizers"
+  },
+  {
+    "id": "m17",
+    "name": "Gulab Jamun",
+    "desc": "Sweet milk solids dumplings in sugar syrup.",
+    "price": "",
+    "image": "/images/menu/Gulab Jamun.jpg",
+    "category": "desserts"
+  },
+  {
+    "id": "m18",
+    "name": "Gajar Halwa",
+    "desc": "Sweet carrot pudding with nuts and dates.",
+    "price": "",
+    "image": "/images/menu/Gajar Halwa.jpg",
+    "category": "desserts"
+  },
+  {
+    "id": "m19",
+    "name": "Kheer",
+    "desc": "Traditional rice pudding with condensed milk and nuts.",
+    "price": "",
+    "image": "/images/menu/Kheer.jpg",
+    "category": "desserts"
+  },
+  {
+    "id": "m20",
+    "name": "Sheer Khurma",
+    "desc": "Vermicelli dessert with milk and dried fruits.",
+    "price": "",
+    "image": "/images/menu/sheer khurma.jpg",
+    "category": "desserts"
   }
 ]

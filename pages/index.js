@@ -177,19 +177,19 @@ export default function Home() {
         {/* Popular Dishes Grid */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Popular on Kabab Hut Catering</h2>
-            <p className="text-center text-gray-600 mb-12 text-lg">Customer favorites from around the world</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Our Specialties</h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">Authentic Pakistani and International Cuisine</p>
             
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
               {[
-                { name: 'Mezze Platter', rating: 4.8, distance: '2.1 mi', price: '580', cuisine: 'Mediterranean', image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=300&fit=crop' },
-                { name: 'Korean BBQ Platter', rating: 4.9, distance: '1.5 mi', price: '850', cuisine: 'Asian', image: 'https://images.unsplash.com/photo-1568096889942-6eedde686635?w=400&h=300&fit=crop' },
-                { name: 'Smoked BBQ Ribs', rating: 4.7, distance: '3.2 mi', price: '950', cuisine: 'American', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop' },
-                { name: 'Fettuccine Alfredo', rating: 4.6, distance: '2.8 mi', price: '520', cuisine: 'Italian', image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop' },
-                { name: 'Taco Bar Box', rating: 4.8, distance: '1.9 mi', price: '620', cuisine: 'Mexican', image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=300&fit=crop' },
-                { name: 'Pad Thai Noodles', rating: 4.9, distance: '2.3 mi', price: '450', cuisine: 'Asian', image: 'https://images.unsplash.com/photo-1559314809-0d155014e29e?w=400&h=300&fit=crop' },
-                { name: 'Gourmet Pizza', rating: 4.7, distance: '1.2 mi', price: '950', cuisine: 'Italian', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop' },
-                { name: 'Shawarma Platter', rating: 4.8, distance: '2.5 mi', price: '680', cuisine: 'Mediterranean', image: 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=400&h=300&fit=crop' },
+                { name: 'Chicken Biryani', image: '/images/menu/Chicken Biryani.jpg' },
+                { name: 'Tandoori Chicken', image: '/images/menu/Tandoori Chicken.jpg' },
+                { name: 'Beef Nihari', image: '/images/menu/Beef Nihari.jpg' },
+                { name: 'Chicken Tikka', image: '/images/menu/Chicken Tikka.jpg' },
+                { name: 'Mutton Karhai', image: '/images/menu/Mutton Karhai.jpg' },
+                { name: 'Samosa', image: '/images/menu/Samosa.jpg' },
+                { name: 'Gulab Jamun', image: '/images/menu/Gulab Jamun.jpg' },
+                { name: 'Chicken Seekh Kabab', image: '/images/menu/Chicken Seekh Kabab.jpg' },
               ].map((item, idx) => (
                 <Link key={idx} href="/menu" className="bg-white rounded-lg shadow-md hover:shadow-xl transition overflow-hidden group">
                   <div className="relative h-40 overflow-hidden">
@@ -200,18 +200,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="p-4">
-                    <h3 className="font-bold text-base mb-1 text-gray-800">{item.name}</h3>
-                    <div className="flex items-center gap-2 text-xs text-gray-600 mb-2">
-                      <span className="flex items-center gap-1">
-                        <span className="text-yellow-500">★</span>
-                        {item.rating}
-                      </span>
-                      <span>•</span>
-                      <span>{item.distance}</span>
-                      <span>•</span>
-                      <span className="font-semibold text-gray-800">${(item.price/100).toFixed(0)}</span>
-                    </div>
-                    <p className="text-xs text-gray-500">{item.cuisine}</p>
+                    <h3 className="font-bold text-base text-gray-800">{item.name}</h3>
                   </div>
                 </Link>
               ))}
