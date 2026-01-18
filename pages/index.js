@@ -214,6 +214,64 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Catering Packages */}
+        <section className="py-16 bg-gradient-to-br from-amber-50 to-orange-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Catering Packages</h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">Pre-designed packages for large events or build your own custom package</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition">
+                <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-lg p-4 mb-4">
+                  <h3 className="text-xl font-bold">Pre-Designed Packages</h3>
+                  <p className="text-sm opacity-90">200+ guests</p>
+                </div>
+                <ul className="space-y-2 text-gray-700 mb-6">
+                  <li className="flex gap-2"><span className="text-red-600">✓</span> 4 curated packages (A, B, C, D)</li>
+                  <li className="flex gap-2"><span className="text-red-600">✓</span> Appetizers + Main course</li>
+                  <li className="flex gap-2"><span className="text-red-600">✓</span> Regular & premium desserts</li>
+                  <li className="flex gap-2"><span className="text-red-600">✓</span> Perfect for weddings & events</li>
+                </ul>
+                <Link href="/packages" className="block w-full bg-red-600 text-white text-center py-3 rounded-lg font-semibold hover:bg-red-700 transition">
+                  View Packages
+                </Link>
+              </div>
+
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition border-2 border-blue-500">
+                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg p-4 mb-4">
+                  <h3 className="text-xl font-bold">Customizable Package</h3>
+                  <p className="text-sm opacity-90">Any guest count</p>
+                </div>
+                <ul className="space-y-2 text-gray-700 mb-6">
+                  <li className="flex gap-2"><span className="text-blue-600">✓</span> Pick items from full menu</li>
+                  <li className="flex gap-2"><span className="text-blue-600">✓</span> Set your guest count</li>
+                  <li className="flex gap-2"><span className="text-blue-600">✓</span> Category-based limits</li>
+                  <li className="flex gap-2"><span className="text-blue-600">✓</span> Tailored to your event</li>
+                </ul>
+                <Link href="/packages" className="block w-full bg-blue-600 text-white text-center py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                  Build Your Package
+                </Link>
+              </div>
+
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition">
+                <div className="bg-gradient-to-r from-green-600 to-teal-600 text-white rounded-lg p-4 mb-4">
+                  <h3 className="text-xl font-bold">Contact for Custom</h3>
+                  <p className="text-sm opacity-90">Special requests</p>
+                </div>
+                <ul className="space-y-2 text-gray-700 mb-6">
+                  <li className="flex gap-2"><span className="text-green-600">✓</span> Corporate catering</li>
+                  <li className="flex gap-2"><span className="text-green-600">✓</span> Dietary accommodations</li>
+                  <li className="flex gap-2"><span className="text-green-600">✓</span> Live cooking stations</li>
+                  <li className="flex gap-2"><span className="text-green-600">✓</span> Full-service events</li>
+                </ul>
+                <Link href="/contact" className="block w-full bg-green-600 text-white text-center py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+                  Contact Us
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Why Choose Us */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
