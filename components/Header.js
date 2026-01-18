@@ -19,6 +19,7 @@ export default function Header() {
         </div>
         <nav className="flex items-center gap-2 md:gap-6 flex-wrap justify-end">
           <Link href="/" className="text-sm md:text-base hover:text-amber-300 transition">Home</Link>
+          <Link href="/packages" className="text-sm md:text-base hover:text-amber-300 transition">Packages</Link>
           <Link href="/menu" className="text-sm md:text-base hover:text-amber-300 transition">Menu</Link>
           <Link href="/about" className="hidden sm:inline text-sm md:text-base hover:text-amber-300 transition">About</Link>
           <Link href="/contact" className="hidden sm:inline text-sm md:text-base hover:text-amber-300 transition">Contact</Link>
