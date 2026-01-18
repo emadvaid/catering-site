@@ -62,7 +62,10 @@ export function CartProvider({ children }) {
   };
 
   const getCartTotal = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cart.reduce((total, item) => {
+      const price = parseFloat(item.price) || 0;
+      return total + (price * item.quantity);
+    }, 0);
   };
 
   const getCartCount = () => {

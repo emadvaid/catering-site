@@ -15,8 +15,9 @@ export default function Cart() {
       // Not logged in, redirect to login
       signIn();
     } else {
+      const total = getCartTotal();
       // Proceed to checkout (placeholder for now)
-      alert('Checkout functionality coming soon! Your order total is $' + getCartTotal().toFixed(2));
+      alert('Checkout functionality coming soon! Your order total is $' + (total ? total.toFixed(2) : '0.00'));
       clearCart();
       router.push('/');
     }
@@ -58,7 +59,11 @@ export default function Cart() {
                   {/* Details */}
                   <div className="flex-grow ml-6">
                     <h3 className="font-bold text-xl text-gray-800">{item.name}</h3>
-                    <p className="text-red-600 font-semibold text-lg">${item.price.toFixed(2)}</p>
+                    {item.price ? (
+                      <p className="text-red-600 font-semibold text-lg">${parseFloat(item.price).toFixed(2)}</p>
+                    ) : (
+                      <p className="text-gray-500 text-sm italic">Contact for pricing</p>
+                    )}
                   </div>
 
                   {/* Quantity Controls */}
@@ -80,9 +85,13 @@ export default function Cart() {
 
                   {/* Subtotal */}
                   <div className="w-24 text-right">
-                    <p className="font-bold text-lg text-gray-800">
-                      ${(item.price * item.quantity).toFixed(2)}
-                    </p>
+                    {item.price ? (
+                      <p className="font-bold text-lg text-gray-800">
+                        ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                      </p>
+                    ) : (
+                      <p className="text-gray-500 text-sm italic">TBD</p>
+                    )}
                   </div>
 
                   {/* Remove Button */}
@@ -100,7 +109,7 @@ export default function Cart() {
             <div className="bg-white rounded-lg shadow-lg p-6">
               <div className="flex justify-between items-center mb-6">
                 <span className="text-2xl font-bold text-gray-800">Total:</span>
-                <span className="text-3xl font-bold text-red-600">${getCartTotal().toFixed(2)}</span>
+                <span className="text-3xl font-bold text-red-600">${(getCartTotal() || 0).toFixed(2)}</span>
               </div>
 
               {!session && (
