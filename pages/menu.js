@@ -25,11 +25,12 @@ export default function Menu() {
     fetchMenu();
   }, []);
 
-  const categories = ['all', ...new Set(menuItems.map(item => item.category))];
-  
-  const filteredItems = selectedCategory === 'all' 
-    ? menuItems 
-    : menuItems.filter(item => item.category === selectedCategory);
+  const categories = ['all', ...new Set(menuItems.map((item) => item.category || 'uncategorized'))];
+
+  const filteredItems =
+    selectedCategory === 'all'
+      ? menuItems
+      : menuItems.filter((item) => (item.category || 'uncategorized') === selectedCategory);
 
   const isInCart = (itemId) => {
     return cart.some((item) => item.id === itemId);
@@ -61,7 +62,9 @@ export default function Menu() {
         {/* Category Filter */}
         {!loading && (
           <div className="flex flex-wrap gap-3 justify-center mb-10">
-            {categories.map((cat) => (
+            {categories.map((cat) => {
+              const label = (cat || 'uncategorized').replace(/-/g, ' ');
+              return (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
@@ -71,9 +74,10 @@ export default function Menu() {
                     : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
                 }`}
               >
-                {cat.replace(/-/g, ' ')}
+                {label}
               </button>
-            ))}
+              );
+            })}
           </div>
         )}
         

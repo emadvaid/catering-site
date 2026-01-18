@@ -116,7 +116,7 @@
     "name": "Pani Puri Shots",
     "desc": "Traditional street food snack in convenient shots.",
     "price": "",
-    "image": "/images/menu/Pani Puri Shots.jpg",
+    "image": "/images/menu/Pani Puri Shots.png",
     "category": "appetizers"
   },
   {
@@ -148,7 +148,7 @@
     "name": "Kheer",
     "desc": "Traditional rice pudding with condensed milk and nuts.",
     "price": "",
-    "image": "/images/menu/Kheer.jpg",
+    "image": "/images/menu/Kheer.png",
     "category": "desserts"
   },
   {
@@ -156,7 +156,7 @@
     "name": "Sheer Khurma",
     "desc": "Vermicelli dessert with milk and dried fruits.",
     "price": "",
-    "image": "/images/menu/sheer khurma.jpg",
+    "image": "/images/menu/sheer khurma.png",
     "category": "desserts"
   }
 ]
