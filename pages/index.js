@@ -1,36 +1,10 @@
-import { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import { FaSearch, FaMapMarkerAlt, FaCheckCircle, FaStar } from 'react-icons/fa'
+import { FaCheckCircle, FaStar } from 'react-icons/fa'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { getCurrentLocation } from '../lib/nativeFeatures'
 
 export default function Home() {
-  const [location, setLocation] = useState('')
-  const [headcount, setHeadcount] = useState('')
-  const [gettingLocation, setGettingLocation] = useState(false)
-
-  const handleSearch = (e) => {
-    e.preventDefault()
-    // Redirect to menu with search params
-    window.location.href = `/menu?location=${location}&headcount=${headcount}`
-  }
-
-  const handleGetLocation = async () => {
-    setGettingLocation(true)
-    try {
-      const coords = await getCurrentLocation()
-      if (coords) {
-        // Simple reverse geocode (in production, use Google Maps API)
-        setLocation(`${coords.latitude.toFixed(4)}, ${coords.longitude.toFixed(4)}`)
-      }
-    } catch (error) {
-      console.error('Location error:', error)
-      alert('Could not get location. Please enter manually.')
-    }
-    setGettingLocation(false)
-  }
 
   return (
     <>
@@ -42,57 +16,26 @@ export default function Home() {
       <Header />
 
       <main>
-        {/* Hero Section with Search */}
+        {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-gray-900 via-red-800 to-black py-24 md:py-32">
           <div className="absolute inset-0 bg-black opacity-10"></div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center text-white">
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                World-Class Catering for Every Occasion
+                South Asian Catering That Shouts Flavor
               </h1>
               <p className="text-xl md:text-2xl mb-10 opacity-95">
-                International Cuisine from Around the Globe - Middle Eastern, Turkish, American & More
+                Signature Pakistani &amp; Indian spreads with big-night energy—want Middle Eastern, Turkish, American, or any cuisine? Ask and we’ll craft it loud and unforgettable.
               </p>
               
-              {/* Search Bar */}
-              <form onSubmit={handleSearch} className="bg-white rounded-lg shadow-2xl p-4 md:p-6 max-w-3xl mx-auto">
-                <div className="flex flex-col md:flex-row gap-4">
-                  <div className="flex-1 relative">
-                    <FaMapMarkerAlt className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                    <input
-                      type="text"
-                      placeholder="Enter delivery address"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      className="w-full pl-12 pr-16 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 text-gray-800"
-                    />
-                    <button
-                      type="button"
-                      onClick={handleGetLocation}
-                      disabled={gettingLocation}
-                      className="absolute right-2 top-1/2 transform -translate-y-1/2 px-3 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:bg-gray-400 text-sm"
-                    >
-                      {gettingLocation ? '📍' : '📍 GPS'}
-                    </button>
-                  </div>
-                  <div className="flex-1 relative">
-                    <input
-                      type="number"
-                      placeholder="Number of people"
-                      value={headcount}
-                      onChange={(e) => setHeadcount(e.target.value)}
-                      className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 text-gray-800"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition shadow-lg flex items-center justify-center gap-2"
-                  >
-                    <FaSearch />
-                    <span>Search Catering</span>
-                  </button>
-                </div>
-              </form>
+              <div className="flex gap-4 justify-center flex-wrap">
+                <Link href="/menu" className="bg-amber-400 text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-amber-300 transition shadow-lg">
+                  Browse Menu
+                </Link>
+                <Link href="/contact" className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-red-700 transition">
+                  Contact Us
+                </Link>
+              </div>
             </div>
           </div>
         </section>
