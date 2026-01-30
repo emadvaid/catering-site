@@ -77,17 +77,23 @@ export default function Contact(){
             )}
           </div>
           
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="text-center p-6 bg-gray-50 rounded-lg">
               <div className="text-3xl mb-2">📞</div>
               <h3 className="font-semibold mb-1">Phone</h3>
-              <p className="text-gray-600">(555) 555-5555</p>
+              <p className="text-gray-600">(770) 925-4440</p>
             </div>
             
             <div className="text-center p-6 bg-gray-50 rounded-lg">
               <div className="text-3xl mb-2">✉️</div>
               <h3 className="font-semibold mb-1">Email</h3>
-              <p className="text-gray-600">info@kababhutcatering.com</p>
+              <p className="text-gray-600">Order@kebabhutatl.com</p>
+            </div>
+
+            <div className="text-center p-6 bg-gray-50 rounded-lg">
+              <div className="text-3xl mb-2">📍</div>
+              <h3 className="font-semibold mb-1">Address</h3>
+              <p className="text-gray-600">880 Indian trail lilburn road<br />Lilburn, Ga 30037</p>
             </div>
             
             <div className="text-center p-6 bg-gray-50 rounded-lg">

@@ -9,8 +9,9 @@ export default function Footer(){
           </div>
           <div>
             <h4 className="font-semibold mb-3">Contact</h4>
-            <p className="text-gray-300 text-sm">Phone: (555) 555-5555</p>
-            <p className="text-gray-300 text-sm">Email: info@kababhutcatering.com</p>
+            <p className="text-gray-300 text-sm">Phone: (770) 925-4440</p>
+            <p className="text-gray-300 text-sm">Email: Order@kebabhutatl.com</p>
+            <p className="text-gray-300 text-sm">Address: 880 Indian trail lilburn road, Lilburn, Ga 30037</p>
           </div>
           <div>
             <h4 className="font-semibold mb-3">Services</h4>

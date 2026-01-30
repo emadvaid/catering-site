@@ -13,6 +13,14 @@ export default function ManageMenu() {
   const [formData, setFormData] = useState({ name: '', price: '', image: '' });
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
 
+  const formatPrice = (value) => {
+    const num = typeof value === 'number' ? value : Number(value);
+    if (Number.isFinite(num)) {
+      return num.toFixed(2);
+    }
+    return '0.00';
+  };
+
   useEffect(() => {
     async function fetchMenu() {
       const response = await fetch('/api/menu', {
@@ -200,7 +208,7 @@ export default function ManageMenu() {
                   <img src={item.image} alt={item.name} className="w-full h-40 object-cover rounded mb-3" />
                 )}
                 <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
-                <p className="text-gray-600 mb-4">${item.price.toFixed(2)}</p>
+                <p className="text-gray-600 mb-4">${formatPrice(item.price)}</p>
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleEdit(item)}

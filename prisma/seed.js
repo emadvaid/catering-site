@@ -10,9 +10,9 @@ async function main() {
   const passwordHash = bcrypt.hashSync('password', 10);
 
   // Add users with hashed passwords
-  await prisma.user.create({ data: { name: 'Admin', email: 'admin+1@example.com', role: 'root', password: passwordHash } });
-  await prisma.user.create({ data: { name: 'Owner', email: 'owner+1@example.com', role: 'owner', password: passwordHash } });
-  await prisma.user.create({ data: { name: 'Customer', email: 'customer+1@example.com', role: 'customer', password: passwordHash } });
+  await prisma.user.create({ data: { name: 'Admin', email: 'admin@kababhutatl.com', role: 'root', password: passwordHash } });
+  await prisma.user.create({ data: { name: 'Owner', email: 'owner@kababhutatl.com', role: 'owner', password: passwordHash } });
+  await prisma.user.create({ data: { name: 'Customer', email: 'customer@kababhutatl.com', role: 'customer', password: passwordHash } });
 
   // Add menu items with images - International Cuisine
   // Asian

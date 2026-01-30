@@ -26,20 +26,18 @@ export default function Home() {
               </h1>
               <p className="text-xl md:text-2xl mb-10 opacity-95">
                 Signature Pakistani &amp; Indian spreads with big-night energy—want Middle Eastern, Turkish, American, or any cuisine? Ask and we’ll craft it loud and unforgettable.
-              </p>
-              
+              </p>              
               <div className="flex gap-4 justify-center flex-wrap">
-                <Link href="/menu" className="bg-amber-400 text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-amber-300 transition shadow-lg">
+                <Link href="/menu" className="bg-amber-400 text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-amber-300 hover:scale-105 transition-all shadow-lg hover:shadow-2xl">
                   Browse Menu
                 </Link>
-                <Link href="/contact" className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-red-700 transition">
+                <Link href="/contact" className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-red-700 hover:scale-105 transition-all shadow-lg">
                   Contact Us
                 </Link>
               </div>
             </div>
           </div>
         </section>
-
         {/* How It Works */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
@@ -87,18 +85,14 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
               {/* Scrollable categories */}
-              <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+              <div className="flex gap-6 justify-center overflow-x-auto pb-4 scrollbar-hide">
                 {[
-                  { name: 'Asian', icon: '🥢', link: '/menu?category=Asian' },
-                  { name: 'BBQ', icon: '🍗', link: '/menu?category=BBQ' },
-                  { name: 'Breakfast', icon: '🥞', link: '/menu?category=Breakfast' },
-                  { name: 'Healthy', icon: '🥗', link: '/menu?category=Healthy' },
-                  { name: 'Italian', icon: '🍝', link: '/menu?category=Italian' },
-                  { name: 'Mediterranean', icon: '🥙', link: '/menu?category=Mediterranean' },
-                  { name: 'Mexican', icon: '🌮', link: '/menu?category=Mexican' },
-                  { name: 'Pizza', icon: '🍕', link: '/menu?category=Pizza' },
-                  { name: 'Sandwiches', icon: '🥪', link: '/menu?category=Sandwiches' },
-                  { name: 'Desserts', icon: '🍰', link: '/menu?category=Desserts' },
+                  { name: 'Appetizers', icon: '🥟', link: '/menu?category=appetizers' },
+                  { name: 'Curries', icon: '🍛', link: '/menu?category=curries' },
+                  { name: 'Biryani', icon: '🍚', link: '/menu?category=biryani' },
+                  { name: 'Grilled', icon: '🍢', link: '/menu?category=grilled' },
+                  { name: 'Vegetarian', icon: '🥬', link: '/menu?category=vegetarian' },
+                  { name: 'Desserts', icon: '🍰', link: '/menu?category=desserts' },
                   { name: 'More', icon: '•••', link: '/menu' },
                 ].map((category, idx) => (
                   <Link 
@@ -106,10 +100,10 @@ export default function Home() {
                     href={category.link}
                     className="flex flex-col items-center justify-center min-w-[80px] group cursor-pointer"
                   >
-                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-2 group-hover:bg-gray-200 transition">
-                      <span className="text-2xl">{category.icon}</span>
+                    <div className="w-16 h-16 bg-gradient-to-br from-red-50 to-orange-50 rounded-full flex items-center justify-center mb-2 group-hover:from-red-100 group-hover:to-orange-100 group-hover:scale-110 group-hover:shadow-lg transition-all">
+                      <span className="text-2xl group-hover:scale-110 transition-transform">{category.icon}</span>
                     </div>
-                    <span className="text-sm text-gray-700 font-medium text-center">{category.name}</span>
+                    <span className="text-sm text-gray-700 font-medium text-center group-hover:text-red-600 transition-colors">{category.name}</span>
                   </Link>
                 ))}
               </div>
@@ -134,7 +128,7 @@ export default function Home() {
                 { name: 'Gulab Jamun', image: '/images/menu/Gulab Jamun.jpg' },
                 { name: 'Chicken Seekh Kabab', image: '/images/menu/Chicken Seekh Kabab.jpg' },
               ].map((item, idx) => (
-                <Link key={idx} href="/menu" className="bg-white rounded-lg shadow-md hover:shadow-xl transition overflow-hidden group">
+                <Link key={idx} href="/menu" className="bg-white rounded-lg shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden group">
                   <div className="relative h-40 overflow-hidden">
                     <img 
                       src={item.image} 
@@ -164,7 +158,7 @@ export default function Home() {
             <p className="text-center text-gray-600 mb-12 text-lg">Pre-designed packages for large events or build your own custom package</p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition">
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
                 <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-lg p-4 mb-4">
                   <h3 className="text-xl font-bold">Pre-Designed Packages</h3>
                   <p className="text-sm opacity-90">200+ guests</p>
@@ -175,12 +169,13 @@ export default function Home() {
                   <li className="flex gap-2"><span className="text-red-600">✓</span> Regular & premium desserts</li>
                   <li className="flex gap-2"><span className="text-red-600">✓</span> Perfect for weddings & events</li>
                 </ul>
-                <Link href="/packages" className="block w-full bg-red-600 text-white text-center py-3 rounded-lg font-semibold hover:bg-red-700 transition">
+                <Link href="/packages" className="block w-full bg-red-600 text-white text-center py-3 rounded-lg font-semibold hover:bg-red-700 hover:scale-105 transition-all">
                   View Packages
                 </Link>
               </div>
 
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition border-2 border-blue-500">
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-2 border-blue-500 relative overflow-hidden">
+                <div className="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>
                 <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg p-4 mb-4">
                   <h3 className="text-xl font-bold">Customizable Package</h3>
                   <p className="text-sm opacity-90">Any guest count</p>
@@ -191,12 +186,12 @@ export default function Home() {
                   <li className="flex gap-2"><span className="text-blue-600">✓</span> Category-based limits</li>
                   <li className="flex gap-2"><span className="text-blue-600">✓</span> Tailored to your event</li>
                 </ul>
-                <Link href="/packages" className="block w-full bg-blue-600 text-white text-center py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                <Link href="/packages" className="block w-full bg-blue-600 text-white text-center py-3 rounded-lg font-semibold hover:bg-blue-700 hover:scale-105 transition-all">
                   Build Your Package
                 </Link>
               </div>
 
-              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition">
+              <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
                 <div className="bg-gradient-to-r from-green-600 to-teal-600 text-white rounded-lg p-4 mb-4">
                   <h3 className="text-xl font-bold">Contact for Custom</h3>
                   <p className="text-sm opacity-90">Special requests</p>
@@ -207,7 +202,7 @@ export default function Home() {
                   <li className="flex gap-2"><span className="text-green-600">✓</span> Live cooking stations</li>
                   <li className="flex gap-2"><span className="text-green-600">✓</span> Full-service events</li>
                 </ul>
-                <Link href="/contact" className="block w-full bg-green-600 text-white text-center py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+                <Link href="/contact" className="block w-full bg-green-600 text-white text-center py-3 rounded-lg font-semibold hover:bg-green-700 hover:scale-105 transition-all">
                   Contact Us
                 </Link>
               </div>
@@ -221,25 +216,25 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Why Choose Kabab Hut Catering?</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FaCheckCircle className="text-green-600 text-3xl" />
+              <div className="text-center group hover:-translate-y-2 transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:shadow-lg transition-all">
+                  <FaCheckCircle className="text-white text-3xl" />
                 </div>
                 <h3 className="font-bold text-xl mb-3">Global Cuisine Expertise</h3>
                 <p className="text-gray-600">Master chefs specializing in Middle Eastern, Turkish, Mediterranean, American, Asian and European cuisines</p>
               </div>
               
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FaCheckCircle className="text-blue-600 text-3xl" />
+              <div className="text-center group hover:-translate-y-2 transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:shadow-lg transition-all">
+                  <FaCheckCircle className="text-blue-100 text-3xl" />
                 </div>
                 <h3 className="font-bold text-xl mb-3">Premium Quality</h3>
                 <p className="text-gray-600">Fresh ingredients, certified suppliers, and dietary accommodations including halal, kosher, vegan & gluten-free options</p>
               </div>
               
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FaCheckCircle className="text-purple-600 text-3xl" />
+              <div className="text-center group hover:-translate-y-2 transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:shadow-lg transition-all">
+                  <FaCheckCircle className="text-purple-100 text-3xl" />
                 </div>
                 <h3 className="font-bold text-xl mb-3">Professional Service</h3>
                 <p className="text-gray-600">Experience catering events from 20 to 1000+ guests - weddings, corporate events, conferences & private parties</p>
@@ -259,16 +254,21 @@ export default function Home() {
                 { name: 'Michael T.', role: 'Wedding Reception', text: 'Kabab Hut Catering made our wedding unforgettable! The fusion menu featuring Turkish and Italian dishes impressed all 250 guests. Highly professional!', rating: 5 },
                 { name: 'Jennifer L.', role: 'Private Party', text: 'Hired them for our anniversary celebration. The quality and presentation of the international buffet exceeded expectations. Will definitely use again!', rating: 5 },
               ].map((review, idx) => (
-                <div key={idx} className="bg-white rounded-lg shadow-md p-6">
+                <div key={idx} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-amber-400">
                   <div className="flex mb-3">
                     {[...Array(review.rating)].map((_, i) => (
-                      <FaStar key={i} className="text-yellow-400" />
+                      <FaStar key={i} className="text-yellow-400 text-lg" />
                     ))}
                   </div>
-                  <p className="text-gray-700 mb-4 italic">"{review.text}"</p>
-                  <div>
-                    <p className="font-bold text-gray-800">{review.name}</p>
-                    <p className="text-sm text-gray-600">{review.role}</p>
+                  <p className="text-gray-700 mb-4 italic leading-relaxed">"{review.text}"</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-red-400 to-orange-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                      {review.name.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-800">{review.name}</p>
+                      <p className="text-sm text-gray-600">{review.role}</p>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -277,15 +277,16 @@ export default function Home() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-r from-gray-900 to-red-800 text-white">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Elevate Your Event?</h2>
+        <section className="py-16 bg-gradient-to-r from-gray-900 via-red-900 to-red-800 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-black opacity-20"></div>
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in-up">Ready to Elevate Your Event?</h2>
             <p className="text-xl mb-8 opacity-95">Experience world-class catering for weddings, corporate events, and special celebrations</p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Link href="/menu" className="bg-amber-400 text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-amber-300 transition shadow-lg">
+              <Link href="/menu" className="bg-amber-400 text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-amber-300 hover:scale-105 transition-all shadow-lg hover:shadow-2xl">
                 Browse Menu
               </Link>
-              <Link href="/contact" className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-red-700 transition">
+              <Link href="/contact" className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-red-700 hover:scale-105 transition-all shadow-lg">
                 Contact Us
               </Link>
             </div>
